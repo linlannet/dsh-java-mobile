@@ -1,0 +1,1 @@
+function r(){const t=new Map;return{async save(e,n){t.set(e,n)},async read(e){var n;return(n=t.get(e))!=null?n:null},async delete(e){t.delete(e)},async exists(e){return t.has(e)}}}export{r as create_memory_credential};

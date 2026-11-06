@@ -1,0 +1,102 @@
+{
+  "root": "../dsh-java-desktop/dist",
+  "generated_at": "2026-11-06T16:04:55.040Z",
+  "files": [
+    {
+      "path": "artifact_meta.json",
+      "bytes": 3204,
+      "sha256": "a1554621d47d8399467e0899d87b598b51e1589890ee04edcadcfdab22e87165"
+    },
+    {
+      "path": "assets/app-CmsTyieN.js",
+      "bytes": 251,
+      "sha256": "ba1ee6a0d5741389392e1ecf57477a1d4a609104032cd62f40e07f2e1c0d82bf"
+    },
+    {
+      "path": "assets/browser_native-CJijoCbZ.js",
+      "bytes": 276,
+      "sha256": "bb5579aa94fde1a797e90b69587f9a187b35a213183a3dd354492e85d99e2237"
+    },
+    {
+      "path": "assets/browser_transport-jpKr2Ar1.js",
+      "bytes": 1340,
+      "sha256": "78c87fa0f21b53e74795c69c0e2f73481b8fdbe3c449237a8e34cd3bcb07a631"
+    },
+    {
+      "path": "assets/core-DxBnVPgq.js",
+      "bytes": 1661,
+      "sha256": "bbf96cc8af1c0d95c3fdfe046a019037fda11715042226c0ce0041dc7d1343c7"
+    },
+    {
+      "path": "assets/echarts-embed-BBfUcxsl.js",
+      "bytes": 1122085,
+      "sha256": "5c5ba2b3d585d4b7bb15e98d66334721c9d5aaff03cf0eed87337b0ec035e355"
+    },
+    {
+      "path": "assets/index-C9_v1RVb.css",
+      "bytes": 183826,
+      "sha256": "42f28a42121fa1ed67b58bbd5a27a032e1b5620239807f074048a6f93724b75b"
+    },
+    {
+      "path": "assets/index-CgCIpWrO.js",
+      "bytes": 1446,
+      "sha256": "8e6958f6ca461c17c1ade6498e249efd068cc984895b9952f9777a44b74b1f83"
+    },
+    {
+      "path": "assets/index-DVhdagZZ.js",
+      "bytes": 1135025,
+      "sha256": "5b8ef00fbea1ce5df4d6caa392e73960db8341b9fa9ec65e051b46e1153a2f9a"
+    },
+    {
+      "path": "assets/index-EF5ZCMwp.js",
+      "bytes": 1114322,
+      "sha256": "1cbe325f1d604e18bba750255f6a0ae1576cb984ee31400a5906ffc686dac6cc"
+    },
+    {
+      "path": "assets/mammoth.browser-CMy1stnu.js",
+      "bytes": 305134,
+      "sha256": "07455ab24b9e5a3c16385540d6ebaa9c93f5e3115843dd5161061cb4cf26eb39"
+    },
+    {
+      "path": "assets/memory_credential-CiNXsnjN.js",
+      "bytes": 219,
+      "sha256": "70939ebda52a935f8aaa9e0ce89c3c90f5f8c3934682c606a99b1f193984606d"
+    },
+    {
+      "path": "assets/tauri_credential-CKPsnaoq.js",
+      "bytes": 738,
+      "sha256": "5d8dba1dfe1d972a53d004be4484d144ad4313dfd19b0f72a5b02eea1f1aa284"
+    },
+    {
+      "path": "assets/tauri_native-4Uk_cjUR.js",
+      "bytes": 1323,
+      "sha256": "262bf07f0e92a6d532320287c6884e359b1da8015f3f0210c3430ef0f50a1cc6"
+    },
+    {
+      "path": "assets/tauri_transport-M5NDFX_R.js",
+      "bytes": 3322,
+      "sha256": "ddb262d3a05c2c3588e8dffb8dbc1ba33ef610b0fba18d1faa50581fc7ef812a"
+    },
+    {
+      "path": "assets/window-CRJjbvwW.js",
+      "bytes": 15087,
+      "sha256": "d041086d15b83c4a1db8988a8bf3f370ce8127e72f26264833f1bb3f19437b2d"
+    },
+    {
+      "path": "assets/xlsx-CGdwrxsh.js",
+      "bytes": 429940,
+      "sha256": "6d347d9c5d552993658eeca6dca976a26293505110447cd3310865c8df72a1a6"
+    },
+    {
+      "path": "dsh-icon.png",
+      "bytes": 9626,
+      "sha256": "982ac6790f9118581670bc119535226baab80920459079cbdc1012565d2a4592"
+    },
+    {
+      "path": "index.html",
+      "bytes": 1652,
+      "sha256": "670e7680ba6c4999bfe90432b758090ddeac69bcff0fe7ccccade2bda336ab20"
+    }
+  ],
+  "total_bytes": 4330477
+}

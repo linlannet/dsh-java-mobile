@@ -1,0 +1,58 @@
+name: harmony-build
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+jobs:
+  harmony:
+    # DevEco / hvigor 依赖厂商工具链，使用自托管 runner
+    runs-on: [self-hosted, harmonyos]
+    steps:
+      - name: Checkout mobile
+        uses: actions/checkout@v4
+        with:
+          repository: linlannet/dsh-java-mobile
+          path: dsh-java-mobile
+
+      - name: 下载 H5 制品
+        uses: actions/download-artifact@v4
+        with:
+          name: h5-artifact
+          path: artifact
+
+      - name: 投递 H5 到 rawfile
+        run: |
+          rm -rf dsh-java-mobile/harmony/entry/src/main/resources/rawfile/h5
+          cp -R artifact/dsh-java-desktop/dist dsh-java-mobile/harmony/entry/src/main/resources/rawfile/h5
+
+      - name: 构建 HAP
+        working-directory: dsh-java-mobile/harmony
+        env:
+          HARMONY_SIGNING_CONFIG: ${{ secrets.HARMONY_SIGNING_CONFIG }}
+        run: |
+          if [ -n "$HARMONY_SIGNING_CONFIG" ]; then
+            echo "$HARMONY_SIGNING_CONFIG" | base64 -d > build-profile.signing.json5
+          fi
+          hvigorw clean --no-daemon
+          hvigorw assembleHap --no-daemon
+
+      - name: 包体检查（HAP ≤ 40MB）
+        run: |
+          set -e
+          find dsh-java-mobile/harmony -name "*.hap" | while read -r f; do
+            size=$(stat -c%s "$f")
+            echo "$f: $size bytes"
+            if [ "$size" -gt 41943040 ]; then
+              echo "包体超限：$f"
+              exit 1
+            fi
+          done
+
+      - name: 上传 HAP
+        uses: actions/upload-artifact@v4
+        with:
+          name: harmony-package
+          path: dsh-java-mobile/harmony/entry/build/**/*.hap
+          if-no-files-found: warn

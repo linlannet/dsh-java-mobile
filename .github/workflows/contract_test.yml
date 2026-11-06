@@ -1,0 +1,43 @@
+name: contract-test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout desktop
+        uses: actions/checkout@v4
+        with:
+          repository: linlannet/dsh-java-desktop
+          path: dsh-java-desktop
+
+      - name: Checkout dsh-java（fixtures 单一事实源）
+        uses: actions/checkout@v4
+        with:
+          repository: linlannet/dsh-java
+          path: dsh-java
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 契约测试（fixtures 缺失即失败）
+        working-directory: dsh-java-desktop
+        env:
+          DSH_CONTRACT_REQUIRED: "1"
+        run: |
+          npm ci
+          npm test
+
+      - name: 上传测试报告
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: contract-report
+          path: dsh-java-desktop/coverage
+          if-no-files-found: ignore

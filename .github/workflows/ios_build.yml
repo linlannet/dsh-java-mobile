@@ -1,0 +1,83 @@
+name: ios-build
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+jobs:
+  ios:
+    runs-on: macos-14
+    steps:
+      - name: Checkout mobile
+        uses: actions/checkout@v4
+        with:
+          repository: linlannet/dsh-java-mobile
+          path: dsh-java-mobile
+
+      - name: 下载 H5 制品
+        uses: actions/download-artifact@v4
+        with:
+          name: h5-artifact
+          path: artifact
+
+      - name: 投递 H5 到 h5-dist
+        run: |
+          rm -rf dsh-java-mobile/h5-dist
+          cp -R artifact/dsh-java-desktop/dist dsh-java-mobile/h5-dist
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-ios,x86_64-apple-ios
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 初始化 iOS 工程
+        working-directory: dsh-java-mobile
+        run: |
+          npm ci
+          npx tauri ios init
+
+      - name: 注入签名证书（可选）
+        if: ${{ secrets.APPLE_CERTIFICATE_BASE64 != '' }}
+        env:
+          APPLE_CERTIFICATE_BASE64: ${{ secrets.APPLE_CERTIFICATE_BASE64 }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_PROVISIONING_PROFILE_BASE64: ${{ secrets.APPLE_PROVISIONING_PROFILE_BASE64 }}
+        run: |
+          echo "$APPLE_CERTIFICATE_BASE64" | base64 -d > certificate.p12
+          echo "$APPLE_PROVISIONING_PROFILE_BASE64" | base64 -d > profile.mobileprovision
+          security create-keychain -p "" build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "" build.keychain
+          security import certificate.p12 -k build.keychain -P "$APPLE_CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+
+      - name: 构建 iOS archive
+        working-directory: dsh-java-mobile
+        run: npx tauri ios build
+
+      - name: 包体检查（IPA ≤ 45MB）
+        run: |
+          set -e
+          find dsh-java-mobile/src-tauri/gen/apple -name "*.ipa" | while read -r f; do
+            size=$(stat -f%z "$f")
+            echo "$f: $size bytes"
+            if [ "$size" -gt 47185920 ]; then
+              echo "包体超限：$f"
+              exit 1
+            fi
+          done
+
+      - name: 上传 iOS 产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-package
+          path: dsh-java-mobile/src-tauri/gen/apple/build/**/*.ipa
+          if-no-files-found: warn

@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "dist/",
+  "projectname": "dsh-java-miniapp",
+  "description": "DSH Java mini-program shell",
+  "appid": "touristappid",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram"
+}

@@ -1,0 +1,23 @@
+[package]
+name = "dsh-java-mobile"
+version = "0.1.0"
+description = "DSH Java Mobile shell"
+authors = ["linlan"]
+edition = "2021"
+
+[lib]
+name = "dsh_java_mobile_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-http = "2"
+tauri-plugin-clipboard-manager = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-deep-link = "2"
+tauri-plugin-os = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

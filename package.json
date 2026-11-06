@@ -1,0 +1,19 @@
+{
+  "name": "dsh-java-mobile",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "tauri": "tauri",
+    "android:init": "tauri android init",
+    "android:build": "tauri android build",
+    "ios:init": "tauri ios init",
+    "ios:build": "tauri ios build",
+    "check:artifact": "node scripts/check_h5_artifact.mjs ../dsh-java-desktop/dist",
+    "h5:meta": "node scripts/gen_artifact_meta.mjs ../dsh-java-desktop/dist",
+    "deploy:h5": "node scripts/distribute_h5.mjs ../dsh-java-desktop/dist"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": ">=2.9.5 <3.0.0"
+  }
+}

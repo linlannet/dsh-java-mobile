@@ -1,0 +1,14 @@
+{
+  "$schema": "../gen/schemas/mobile-schema.json",
+  "identifier": "mobile",
+  "description": "移动端最小权限：本地资源、HTTP、剪贴板、通知、深链、系统信息",
+  "platforms": ["android", "iOS"],
+  "permissions": [
+    "core:default",
+    "http:default",
+    "clipboard-manager:default",
+    "notification:default",
+    "deep-link:default",
+    "os:default"
+  ]
+}

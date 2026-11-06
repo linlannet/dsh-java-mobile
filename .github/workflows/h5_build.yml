@@ -1,0 +1,51 @@
+name: h5-build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build-h5:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout desktop (UI 唯一事实源)
+        uses: actions/checkout@v4
+        with:
+          repository: linlannet/dsh-java-desktop
+          path: dsh-java-desktop
+
+      - name: Checkout mobile (壳工程)
+        uses: actions/checkout@v4
+        with:
+          repository: linlannet/dsh-java-mobile
+          path: dsh-java-mobile
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build H5（仅一次前端构建）
+        working-directory: dsh-java-desktop
+        run: |
+          npm ci
+          npm run build
+
+      - name: 生成产物元数据
+        working-directory: dsh-java-desktop
+        run: node ../dsh-java-mobile/scripts/gen_artifact_meta.mjs dist 0.1.0 1 1
+
+      - name: 产物检查与投递（同一份产物）
+        working-directory: dsh-java-mobile
+        run: |
+          node scripts/check_h5_artifact.mjs ../dsh-java-desktop/dist
+          node scripts/distribute_h5.mjs ../dsh-java-desktop/dist
+
+      - name: 上传 H5 制品
+        uses: actions/upload-artifact@v4
+        with:
+          name: h5-artifact
+          path: |
+            dsh-java-desktop/dist
+            dsh-java-mobile/h5-dist

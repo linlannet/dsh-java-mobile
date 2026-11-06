@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "DSH Java Mobile entry module"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "DSH Java Mobile"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "DSH Java Mobile"
+    }
+  ]
+}

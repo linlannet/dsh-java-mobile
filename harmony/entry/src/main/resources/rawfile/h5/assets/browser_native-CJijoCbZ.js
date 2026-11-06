@@ -1,0 +1,1 @@
+function n(){return{async invoke(){throw new Error("当前宿主不支持原生能力")},app_info:{async version(){return"web"}},update:{async check(){return null}},lifecycle:{async close_window(){},async on_focus_changed(){return()=>{}}}}}export{n as create_browser_native};
