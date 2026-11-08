@@ -1,8 +1,31 @@
 {
   "name": "dsh-java-mobile",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
+  "description": "DSH Java multi-platform shell — Android/iOS (Tauri 2 Mobile), HarmonyOS (ArkWeb) and WeChat mini-program share one React H5 artifact.",
+  "keywords": [
+    "mobile",
+    "tauri",
+    "harmonyos",
+    "arkweb",
+    "wechat-miniapp",
+    "taro",
+    "agent-client"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linlannet/dsh-java-mobile.git"
+  },
+  "homepage": "https://github.com/linlannet/dsh-java-mobile",
+  "bugs": {
+    "url": "https://github.com/linlannet/dsh-java-mobile/issues"
+  },
+  "license": "MIT",
+  "author": "Linlan",
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "tauri": "tauri",
     "android:init": "tauri android init",
@@ -10,8 +33,16 @@
     "ios:init": "tauri ios init",
     "ios:build": "tauri ios build",
     "check:artifact": "node scripts/check_h5_artifact.mjs ../dsh-java-desktop/dist",
+    "check:size": "node scripts/check_h5_size.mjs ../dsh-java-desktop/dist",
+    "check:security": "node scripts/check_h5_security.mjs ../dsh-java-desktop/dist",
+    "check:offline": "node scripts/h5_offline_check.mjs ../dsh-java-desktop/dist",
     "h5:meta": "node scripts/gen_artifact_meta.mjs ../dsh-java-desktop/dist",
-    "deploy:h5": "node scripts/distribute_h5.mjs ../dsh-java-desktop/dist"
+    "deploy:h5": "node scripts/distribute_h5.mjs ../dsh-java-desktop/dist",
+    "hosted:verify": "node scripts/verify_hosted_hash.mjs",
+    "meta:doc": "node scripts/gen_manifest_doc.mjs ../dsh-java-desktop/dist",
+    "consistency": "node scripts/check_release_consistency.mjs ..",
+    "verify:artifact": "node scripts/verify_artifact_consistency.mjs ../dsh-java-desktop/dist/artifact_meta.json",
+    "regression": "node scripts/desktop_regression.mjs ../dsh-java-desktop ."
   },
   "devDependencies": {
     "@tauri-apps/cli": ">=2.9.5 <3.0.0"

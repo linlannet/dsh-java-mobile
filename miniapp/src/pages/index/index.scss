@@ -42,3 +42,32 @@
   color: #87878a;
   line-height: 1.6;
 }
+
+.index-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.index-field-label {
+  font-size: 22px;
+  color: #87878a;
+}
+
+.index-input {
+  height: 88px;
+  padding: 0 24px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(31, 31, 36, 0.08);
+  font-size: 28px;
+}
+
+.index-message {
+  font-size: 22px;
+  color: #606060;
+}
+
+.index-message.error {
+  color: #c93c3c;
+}

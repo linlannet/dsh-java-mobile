@@ -1,5 +1,12 @@
 # DSH Java Mobile
 
+[中文](./README.md) | [English](./README.en.md)
+
+> **TL;DR** · DSH Java 多端壳工程：Android/iOS（Tauri 2 Mobile）、HarmonyOS（ArkWeb）、微信小程序（Taro）共用同一份 React H5 产物。
+> **Keywords**: Android, iOS, HarmonyOS, ArkWeb, Tauri, WeChat Mini Program, Taro
+> **相关仓库**: [dsh-java](https://github.com/linlannet/dsh-java) · [dsh-java-plugins](https://github.com/linlannet/dsh-java-plugins) · [dsh-java-desktop](https://github.com/linlannet/dsh-java-desktop) · [dsh-java-release](https://github.com/linlannet/dsh-java-release)
+> **AI 入口**: [llms.txt](./llms.txt) · [AGENTS.md](./AGENTS.md)
+
 DSH 多端**壳工程**：Android / iOS / HarmonyOS / 微信小程序共用**同一份 React H5 产物**。
 
 > UI 唯一事实源在 `../dsh-java-desktop`。本仓库**不承载 React 业务源码**，只承载壳层、原生能力桥、构建脚本与产物消费。
@@ -18,12 +25,16 @@ DSH 多端**壳工程**：Android / iOS / HarmonyOS / 微信小程序共用**同
 
 ```text
 dsh-java-mobile/
-├── docs/specs/           需求、任务、验收、清理记录
-├── h5-dist/              H5 产物注入目录（CI 下载，不入库）
-├── scripts/              产物检查、分发、元数据、回归、一致性校验
-├── src-tauri/            Android/iOS 共享 Rust 壳（Tauri 2）
-├── harmony/              HarmonyOS ArkTS 壳（ArkWeb）
-└── miniapp/              微信小程序（Taro 4 + React）
+├── README.md / README.en.md   中英文说明
+├── llms.txt                   LLM 项目摘要
+├── AGENTS.md                  编码助手约定
+├── package.json               脚本入口与元数据
+├── docs/specs/                需求、任务、验收、清理记录
+├── h5-dist/                   H5 产物注入目录（CI 下载，不入库）
+├── scripts/                   产物检查、分发、元数据、回归、一致性校验
+├── src-tauri/                 Android/iOS 共享 Rust 壳（Tauri 2）
+├── harmony/                   HarmonyOS ArkTS 壳（ArkWeb）
+└── miniapp/                   微信小程序（Taro 4 + React）
 ```
 
 ## 构建顺序

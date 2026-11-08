@@ -1,0 +1,39 @@
+# DSH Java Mobile (dsh-java-mobile) — Multi-platform shell
+
+> Shell project for DSH Java: Android, iOS, HarmonyOS and WeChat mini-program share the **same**
+> React H5 artifact produced by dsh-java-desktop. No second UI stack.
+
+Platforms:
+- Android  Tauri 2 Mobile (Rust + Kotlin plugins)  -> APK/AAB with `h5-dist`
+- iOS      Tauri 2 Mobile (Rust + Swift plugins)   -> IPA with `h5-dist`
+- HarmonyOS ArkTS/ArkUI + ArkWeb                   -> HAP with `rawfile/h5`
+- Mini app Taro 4 + React (reuses protocol SDK)    -> `miniapp/dist`
+
+Key capabilities:
+- One front-end build, distributed to all hosts with hash verification
+- Device pairing (short code), mobile access toggle, credential storage
+- Platform capability contract (transport, credential, file, notify, git, ...)
+- Release gates: artifact paths, size, security, offline, consistency
+
+Version: 0.1.0
+Repository: https://github.com/linlannet/dsh-java-mobile
+Related: dsh-java-desktop (UI source of truth), dsh-java, dsh-java-release
+
+Commands:
+- `node scripts/desktop_regression.mjs ../dsh-java-desktop .`   full regression
+- `node scripts/distribute_h5.mjs ../dsh-java-desktop/dist`    distribute artifact
+- `node scripts/check_release_consistency.mjs ..`             cross-repo hash check
+- `npm run android:build` / `npm run ios:build`
+- `cd miniapp && npm install && npm run build:weapp`
+
+Layout:
+- src-tauri/  shared Tauri shell
+- harmony/    HarmonyOS ArkTS shell (ArkWeb + JSBridge)
+- miniapp/    Taro mini-program shell
+- scripts/    build, gate and regression scripts
+- docs/specs/mobile_app_evolution/  spec, tasks, acceptance
+
+Docs:
+- README.md / README.en.md
+- docs/specs/mobile_app_evolution/
+- AGENTS.md

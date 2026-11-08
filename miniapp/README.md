@@ -20,7 +20,8 @@ npm run build:weapp     # 产物在 miniapp/dist
 | --- | --- | --- |
 | 协议类型与信封 | `dsh-java-desktop/src/lib/protocol.ts`、`src/platform/result.ts` | 纯 TS，直接复制到 `src/sdk/` |
 | 业务模型类型 | `dsh-java-desktop/src/types.ts` | 纯类型，直接复制 |
-| 传输接口 | `dsh-java-desktop/src/platform/transport.ts` | 复制接口，新增 `miniapp_transport`（`Taro.request` 实现） |
+| 传输接口 | `dsh-java-desktop/src/platform/transport.ts` | 已落地 `src/sdk/http.ts`（`Taro.request` 信封封装） |
+| 设备与登录 | — | 已落地 `src/sdk/device.ts`（配对/设备管理）、`src/sdk/auth.ts`（微信登录/订阅消息） |
 | 契约 fixtures | `dsh-java/docs/spec/0.2.2/contract/fixtures` | 测试期引用，不打入包体 |
 | UI 组件 | `dsh-java-desktop/src/components/*` | 小程序**不复用 DOM 组件**，仅复用业务语义 |
 
@@ -41,5 +42,7 @@ npm run build:weapp     # 产物在 miniapp/dist
 
 ## 已知限制
 
-- 当前为工程骨架，尚未接入真实协议 SDK 与后端域名。
+- 已接入：请求层 `src/sdk/http.ts`、微信登录 `src/sdk/auth.ts`、设备管理 `src/sdk/device.ts`；首页已具备服务器地址输入与登录状态展示（`50300` 会提示未配置微信凭证）。
+- 仍需：`npm install`、微信开发者工具预览、后端 HTTPS 域名、`DSH_MINIAPP_WECHAT_APPID` / `DSH_MINIAPP_WECHAT_SECRET`。
+- 未实现：会话列表/对话页、订阅消息页面、分包拆分。
 - 需 `npm install` 与微信开发者工具真机预览后才能验收。
