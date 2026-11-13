@@ -1,6 +1,6 @@
 [package]
 name = "dsh-java-mobile"
-version = "0.1.0"
+version = "0.2.0"
 description = "DSH Java Mobile shell"
 authors = ["linlan"]
 edition = "2021"
